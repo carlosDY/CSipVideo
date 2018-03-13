@@ -356,6 +356,7 @@ public class BasePrefsWizard extends GenericPrefs {
 	@Override
 	public SharedPreferences getSharedPreferences(String name, int mode) {
 	    return super.getSharedPreferences(WIZARD_PREF_NAME, mode);
+
 	}
 
 }

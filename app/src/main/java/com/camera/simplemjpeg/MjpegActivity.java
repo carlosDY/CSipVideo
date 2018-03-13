@@ -1,16 +1,18 @@
 package com.camera.simplemjpeg;
 
 import android.app.Activity;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-//import com.camera.R;
-
 import com.R;
+import com.csipsimple.ui.incall.InCallCard;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -18,10 +20,8 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-//import android.support.v7.app.AppCompatActivity;
-
-
 public class MjpegActivity extends Activity  {
+
     private static final boolean DEBUG=false;
     private static final String TAG = "MJPEG";
     String width="320";
@@ -49,7 +49,7 @@ public class MjpegActivity extends Activity  {
         Bundle bundle = getIntent().getExtras();
 
         new DoRead().execute( hostname, portnum);
-
+        
 
         Button  buttonConnect = (Button) findViewById(R.id.connect);
         buttonConnect.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +147,9 @@ public class MjpegActivity extends Activity  {
             Socket socket = null;
             try {
                 socket = new Socket( params[0], Integer.valueOf( params[1]));
+
                 return (new MjpegInputStream(socket.getInputStream()));
+
             } catch (UnknownHostException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

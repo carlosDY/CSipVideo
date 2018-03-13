@@ -23,10 +23,13 @@ package com.csipsimple.ui.incall;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.DhcpInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.text.format.Formatter;
 import android.util.AttributeSet;
 import android.util.FloatMath;
 import android.view.LayoutInflater;
@@ -81,11 +84,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.Context.WIFI_SERVICE;
+
 public class InCallCard extends FrameLayout implements OnClickListener, Callback {
 
-
-
-    /////////////////////////////////////////////////////777
+    /////////////////////////////////////////////////////
 
     private static final boolean DEBUG=false;
     private static final String TAG = "MJPEG";
@@ -668,6 +671,8 @@ public class InCallCard extends FrameLayout implements OnClickListener, Callback
                 dispatchTriggerEvent(IOnCallActionTrigger.REJECT_CALL);
             } else if (!callInfo.isAfterEnded()) {
                 dispatchTriggerEvent(IOnCallActionTrigger.TERMINATE_CALL);
+
+
             }
         }
         else if (id == R.id.puerta) {
