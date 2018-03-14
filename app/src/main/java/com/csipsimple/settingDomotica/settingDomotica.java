@@ -1,4 +1,4 @@
-package com.csipsimple.garage;
+package com.csipsimple.settingDomotica;
 
 /**
  * Created by Carlos on 3/8/2018.
@@ -37,7 +37,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 
-public class settingDomotica extends SherlockFragment {
+public class settingDomotica extends SherlockFragment implements View.OnClickListener{
 
     private static final String THIS_FILE = "settingDomotica_Fragment";
 
@@ -55,7 +55,7 @@ public class settingDomotica extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.config_domotica, container, false);
         BotonPrueba=(Button) v.findViewById(R.id.configBoton);
-
+        BotonPrueba.setOnClickListener(this);
         TextoPrueba=(TextView) v.findViewById(R.id.configText);
 
         return v;
@@ -65,6 +65,7 @@ public class settingDomotica extends SherlockFragment {
     public void onAttach(Activity activity) {
 
         super.onAttach(activity);
+
         Intent serviceIntent = new Intent(SipManager.INTENT_SIP_SERVICE);
         // Optional, but here we bundle so just ensure we are using csipsimple package
         serviceIntent.setPackage(activity.getPackageName());
